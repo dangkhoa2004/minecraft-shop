@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Website</title>
+    <link rel="stylesheet" href="/style/index.css">
+    <link rel="stylesheet" href="/style/layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div th:replace="~{layout/layout :: header}"></div>
+    <section>
+        <section class="hero">
+            <img src="/img/hero.avif" alt="Hero Image">
+        </section>
+        <section class="discover-games">
+            <h2>Discover Our Games</h2>
+            <div class="games">
+                <div class="game">
+                    <img src="/img/valina.webp" alt="Game 1">
+                    <p>Minecraft</p>
+                </div>
+                <div class="game">
+                    <img src="/img/dungeon.avif" alt="Game 2">
+                    <p>Minecraft Dungeons</p>
+                </div>
+                <div class="game">
+                    <img src="/img/legends.avif" alt="Game 2">
+                    <p>Minecraft Legends</p>
+                </div>
+                <div class="game">
+                    <img src="/img/education.avif" alt="Game 2">
+                    <p>Minecraft Education</p>
+                </div>
+            </div>
+        </section>
+    </section>
+    <div th:replace="~{layout/layout :: footer}"></div>
+</body>
+
+</html>

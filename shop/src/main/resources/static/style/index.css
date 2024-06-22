@@ -1,0 +1,46 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0f0f0f;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.discover-games {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.games {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.game {
+    width: 350px;
+    text-align: center;
+}
+
+.game img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s;
+}
+
+.game img:hover {
+    transform: scale(1.1);
+}
