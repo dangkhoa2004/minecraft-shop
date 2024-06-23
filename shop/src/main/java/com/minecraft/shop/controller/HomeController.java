@@ -7,6 +7,7 @@ package com.minecraft.shop.controller;
 import com.minecraft.shop.model.*;
 import com.minecraft.shop.repository.*;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +51,14 @@ public class HomeController {
     public String home(Model model) {
         System.out.println("HOME PAGE");
         List<Product> lstProduct = productRepo.findAll();
-        fillProduct(model);
+        lstProduct.forEach(product -> {
+            String gameplayNames = product.getGameplay().stream()
+                    .map(Gameplay::getName)
+                    .collect(Collectors.joining(", "));
+            product.setGameplayNames(gameplayNames);
+        });
         model.addAttribute("lstProduct", lstProduct);
         return "index";
     }
+
 }

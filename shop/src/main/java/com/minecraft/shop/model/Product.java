@@ -24,6 +24,9 @@ public class Product implements Serializable {
     )
     private Set<Gameplay> gameplay;
 
+    @Transient
+    private String gameplayNames;
+
     @ManyToMany
     @JoinTable(
             name = "Product_Platform",
@@ -46,12 +49,13 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(int id, String name, String description, int price, Set<Gameplay> gameplay, Set<Platform> platform, Set<Version> version, List<Imageurl> imageUrl) {
+    public Product(int id, String name, String description, int price, Set<Gameplay> gameplay, String gameplayNames, Set<Platform> platform, Set<com.minecraft.shop.model.Version> version, List<Imageurl> imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.gameplay = gameplay;
+        this.gameplayNames = gameplayNames;
         this.platform = platform;
         this.version = version;
         this.imageUrl = imageUrl;
@@ -97,6 +101,14 @@ public class Product implements Serializable {
         this.gameplay = gameplay;
     }
 
+    public String getGameplayNames() {
+        return gameplayNames;
+    }
+
+    public void setGameplayNames(String gameplayNames) {
+        this.gameplayNames = gameplayNames;
+    }
+
     public Set<Platform> getPlatform() {
         return platform;
     }
@@ -105,11 +117,11 @@ public class Product implements Serializable {
         this.platform = platform;
     }
 
-    public Set<Version> getVersion() {
+    public Set<com.minecraft.shop.model.Version> getVersion() {
         return version;
     }
 
-    public void setVersion(Set<Version> version) {
+    public void setVersion(Set<com.minecraft.shop.model.Version> version) {
         this.version = version;
     }
 
@@ -120,4 +132,5 @@ public class Product implements Serializable {
     public void setImageUrl(List<Imageurl> imageUrl) {
         this.imageUrl = imageUrl;
     }
+
 }
