@@ -40,6 +40,18 @@ body {
     height: auto;
     transition: transform 0.5s;
 }
+.game-contact {
+    padding: 20px;
+}
+.game-contact h3 {
+    font-size: 1.5em;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.game-contact p {
+    color: grey;
+}
 
 .game img:hover {
     transform: scale(1.1);

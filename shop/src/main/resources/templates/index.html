@@ -17,23 +17,19 @@
             <img src="/img/hero.avif" alt="Hero Image">
         </section>
         <section class="discover-games">
-            <h2>Discover Our Games</h2>
+            <h2>DISCOVER OUR GAMES</h2>
             <div class="games">
-                <div class="game">
-                    <img src="/img/valina.webp" alt="Game 1">
-                    <p>Minecraft</p>
-                </div>
-                <div class="game">
-                    <img src="/img/dungeon.avif" alt="Game 2">
-                    <p>Minecraft Dungeons</p>
-                </div>
-                <div class="game">
-                    <img src="/img/legends.avif" alt="Game 2">
-                    <p>Minecraft Legends</p>
-                </div>
-                <div class="game">
-                    <img src="/img/education.avif" alt="Game 2">
-                    <p>Minecraft Education</p>
+                <div class="game" th:each="product : ${lstProduct}">
+                    <div th:if="${#lists.size(product.imageUrl) > 0}">
+                        <img th:src="@{${product.imageUrl[0].url}}" alt="mouse-image">
+                    </div>
+                    <div class="game-contact">
+                        <h1 th:text="${product.name}"></h1>
+                        <h2 th:text="${product.description}"></h2>
+                        <div class="game-category">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
