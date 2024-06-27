@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/style/layout.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header th:fragment="header">
         <nav>
@@ -14,11 +16,11 @@
                 <img src="/img/logo.svg" alt="Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="#">Games</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Account</a></li>
+                <li th:classappend="${page == 'home' ? 'active' : ''}"><a href="/">HOME</a></li>
+                <li th:classappend="${page == 'shop' ? 'active' : ''}"><a href="/shop">SHOP</a></li>
+                <li th:classappend="${page == 'community' ? 'active' : ''}"><a href="/community">COMMUNITY</a></li>
+                <li th:classappend="${page == 'support' ? 'active' : ''}"><a href="/support">SUPPORT</a></li>
+                <li th:classappend="${page == 'account' ? 'active' : ''}"><a href="/account">ACCOUNT</a></li>
             </ul>
         </nav>
     </header>
@@ -31,4 +33,5 @@
         </div>
     </footer>
 </body>
+
 </html>

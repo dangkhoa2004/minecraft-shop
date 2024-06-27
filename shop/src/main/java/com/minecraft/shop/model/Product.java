@@ -35,6 +35,9 @@ public class Product implements Serializable {
     )
     private Set<Platform> platform;
 
+    @Transient
+    private String platformNames;
+
     @ManyToMany
     @JoinTable(
             name = "Product_Version",
@@ -43,13 +46,16 @@ public class Product implements Serializable {
     )
     private Set<Version> version;
 
+    @Transient
+    private String versionNames;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Imageurl> imageUrl;
 
     public Product() {
     }
 
-    public Product(int id, String name, String description, int price, Set<Gameplay> gameplay, String gameplayNames, Set<Platform> platform, Set<com.minecraft.shop.model.Version> version, List<Imageurl> imageUrl) {
+    public Product(int id, String name, String description, int price, Set<Gameplay> gameplay, String gameplayNames, Set<Platform> platform, String platformNames, Set<com.minecraft.shop.model.Version> version, String versionNames, List<Imageurl> imageUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,7 +63,9 @@ public class Product implements Serializable {
         this.gameplay = gameplay;
         this.gameplayNames = gameplayNames;
         this.platform = platform;
+        this.platformNames = platformNames;
         this.version = version;
+        this.versionNames = versionNames;
         this.imageUrl = imageUrl;
     }
 
@@ -117,12 +125,28 @@ public class Product implements Serializable {
         this.platform = platform;
     }
 
+    public String getPlatformNames() {
+        return platformNames;
+    }
+
+    public void setPlatformNames(String platformNames) {
+        this.platformNames = platformNames;
+    }
+
     public Set<com.minecraft.shop.model.Version> getVersion() {
         return version;
     }
 
     public void setVersion(Set<com.minecraft.shop.model.Version> version) {
         this.version = version;
+    }
+
+    public String getVersionNames() {
+        return versionNames;
+    }
+
+    public void setVersionNames(String versionNames) {
+        this.versionNames = versionNames;
     }
 
     public List<Imageurl> getImageUrl() {

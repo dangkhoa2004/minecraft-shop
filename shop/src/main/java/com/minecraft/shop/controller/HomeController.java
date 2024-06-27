@@ -30,8 +30,6 @@ public class HomeController {
     // about product
     @Autowired
     private ProductRepository productRepo;
-    @Autowired
-    private ImageurlRepository imageurlRepo;
 
     private void fillCategory(Model model) {
         List<Gameplay> gameplay = gameplayRepo.findAll();
@@ -42,23 +40,63 @@ public class HomeController {
         model.addAttribute("version", version);
     }
 
-    private void fillProduct(Model model) {
-        List<Product> product = productRepo.findAll();
-        model.addAttribute("product", product);
-    }
-
-    @GetMapping("/")
-    public String home(Model model) {
-        System.out.println("HOME PAGE");
+    private void allforProduct(Model model) {
         List<Product> lstProduct = productRepo.findAll();
+        // setGameplayNames
         lstProduct.forEach(product -> {
             String gameplayNames = product.getGameplay().stream()
                     .map(Gameplay::getName)
                     .collect(Collectors.joining(", "));
             product.setGameplayNames(gameplayNames);
         });
+        // setPlatformNames
+        lstProduct.forEach(product -> {
+            String platformNames = product.getPlatform().stream()
+                    .map(Platform::getName)
+                    .collect(Collectors.joining(", "));
+            product.setPlatformNames(platformNames);
+        });
+        // setVersionNames
+        lstProduct.forEach(product -> {
+            String versionNames = product.getVersion().stream()
+                    .map(Version::getName)
+                    .collect(Collectors.joining("+ "));
+            product.setVersionNames(versionNames);
+        });
         model.addAttribute("lstProduct", lstProduct);
+    }
+
+    @GetMapping("/")
+    public String home(Model model) {
+        System.out.println("HOME PAGE");
+        model.addAttribute("page", "home");
+        allforProduct(model);
         return "index";
     }
 
+    @GetMapping("/shop")
+    public String shop(Model model) {
+        System.out.println("SHOP PAGE");
+        model.addAttribute("page", "shop");
+        allforProduct(model);
+        return "shop";
+    }
+
+    @GetMapping("/community")
+    public String community(Model model) {
+        model.addAttribute("page", "community");
+        return "community";
+    }
+
+    @GetMapping("/support")
+    public String support(Model model) {
+        model.addAttribute("page", "support");
+        return "support";
+    }
+
+    @GetMapping("/account")
+    public String account(Model model) {
+        model.addAttribute("page", "account");
+        return "account";
+    }
 }
