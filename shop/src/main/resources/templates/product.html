@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Website</title>
+    <link rel="stylesheet" href="/style/layout.css">
+    <link rel="stylesheet" href="/style/product.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div th:replace="~{layout/layout :: header}"></div>
+    <section>
+        <div class="banner">
+            <div class="banner-title">
+                <h1>THE WORLD IS YOURS<br>FOR THE MAKING</h1>
+                <a href="#" class="button">
+                    <img src="/img/pickaxe.webp" alt="logo">
+                    DIG DEEPER
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <h1>DISCOVER MINECRAFT</h1>
+            <div class="description">
+                <p>Minecraft is a game made up of blocks, creatures, and community. Blocks can be used to reshape the
+                    world
+                    or build fantastical creations. Creatures can be battled or befriended, depending on your playstyle.
+                    Experience epic adventures solo or with friends, there's no wrong way to play. Unless you're digging
+                    straight down.
+                </p>
+            </div>
+            <div class="slider">
+                <div class="slides">
+                    <img src="/img/product1.jpg" class="active" alt="Minecraft Image 1">
+                    <img src="/img/product2.jpg" alt="Minecraft Image 2">
+                    <img src="/img/product3.avif" alt="Minecraft Image 3">
+                    <img src="/img/product4.webp" alt="Minecraft Image 4">
+                    <img src="/img/product5.jpg" alt="Minecraft Image 5">
+                </div>
+                <div class="navigation">
+                    <button onclick="prevSlide()">&#10094;</button>
+                    <button onclick="nextSlide()">&#10095;</button>
+                </div>
+            </div>
+        </div>
+        <div class="purchase">
+            <div class="icon">
+                <img src="/img/favicon.ico" alt="Creeper Icon">
+            </div>
+            <div class="text">
+                <h2>READY TO PURCHASE?</h2>
+                <p>Explore and craft your way through an infinite world that's yours to shape, one block at a time.</p>
+            </div>
+            <div class="button-purchase">
+                <a href="#">GET MINECRAFT</a>
+            </div>
+        </div>
+        <div class="tutorials-body">
+            <h2>HOW IT WORKS</h2>
+            <div class="tutorials">
+                <div>
+                    <img src="/img/gather.avif" alt="Gather Resources">
+                    <h3>Gather Resources</h3>
+                    <p>Get crafty and use the surrounding environment to gather building materials—see how breaking down
+                        trees can help you create something new.</p>
+                </div>
+                <div>
+                    <img src="/img/survival.avif" alt="Survive the Night">
+                    <h3>Survive the Night</h3>
+                    <p>It’s always best to avoid the unpredictable by distancing yourself from wandering mobs—you never
+                        know what’ll happen if they get too close!</p>
+                </div>
+                <div>
+                    <img src="/img/build.avif" alt="Build Amazing Things">
+                    <h3>Build Amazing Things</h3>
+                    <p>Discover all the versatile ways dust from the redstone ore can be used to enhance your creations,
+                        bring them to life, or give them some bang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div th:replace="~{layout/layout :: footer}"></div>
+</body>
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slides img');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+        showSlide(currentSlide);
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+        showSlide(currentSlide);
+    }
+</script>
+
+</html>
