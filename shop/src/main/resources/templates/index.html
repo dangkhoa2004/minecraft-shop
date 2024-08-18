@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Website</title>
-    <link rel="stylesheet" href="/style/index.css">
-    <link rel="stylesheet" href="/style/layout.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Minecraft Website</title>
+        <link rel="stylesheet" href="/style/index.css">
+        <link rel="stylesheet" href="/style/layout.css">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
 
-<body>
-    <div th:replace="~{layout/layout :: header}"></div>
-    <section>
-        <section class="hero">
-            <img src="/img/hero.avif" alt="Hero Image">
-        </section>
-        <section class="discover-games">
-            <h2 id="discover-games">DISCOVER OUR GAMES</h2>
-            <div class="games">
-                <div class="game" th:each="product : ${lstProduct}">
-                    <div th:if="${#lists.size(product.imageUrl) > 0}" class="image-container">
-                        <img th:src="@{${product.imageUrl[0].url}}" alt="mouse-image">
-                        <button class="view-more-button" onclick="viewMore()">
-                            <a th:href="@{/product/{id}(id=${product.id})}"
-                                style="text-decoration: none; color: white;">VIEW MORE</a>
-                        </button>
-                    </div>
-                    <div class="game-content">
-                        <div class="game-title">
-                            <h1 th:text="${product.name}"></h1>
+    <body>
+        <div th:replace="~{layout/layout :: header}"></div>
+        <section>
+            <section class="hero">
+                <img src="/img/hero.avif" alt="Hero Image">
+            </section>
+            <section class="discover-games">
+                <h2 id="discover-games">DISCOVER OUR GAMES</h2>
+                <div class="games">
+                    <div class="game" th:each="product : ${lstProduct}">
+                        <div th:if="${#lists.size(product.imageUrl) > 0}" class="image-container">
+                            <img th:src="@{${product.imageUrl[0].url}}" alt="mouse-image">
+                            <button class="view-more-button" onclick="viewMore()">
+                                <a th:href="@{/product/{id}(id=${product.id})}"
+                                   style="text-decoration: none; color: white;">VIEW MORE</a>
+                            </button>
                         </div>
-                        <hr>
-                        <h4>DESCRIPTION</h4>
-                        <p class="card-description" th:text="${product.gameplayNames}"></p>
-                        <p class="card-info" th:text="${product.versionNames}"></p>
-                        <div class="icons">
-                            <i class="fab fa-windows"></i>
-                            <i class="fab fa-xbox"></i>
-                            <i class="fab fa-steam"></i>
-                            <i class="fas fa-gamepad"></i>
-                            <i class="fas fa-desktop"></i>
+                        <div class="game-content">
+                            <div class="game-title">
+                                <h1 th:text="${product.name}"></h1>
+                            </div>
+                            <hr>
+                            <h4>DESCRIPTION</h4>
+                            <p class="card-description" th:text="${product.gameplayNames}"></p>
+                            <p class="card-info" th:text="${product.versionNames}"></p>
+                            <div class="icons">
+                                <i class="fab fa-windows"></i>
+                                <i class="fab fa-xbox"></i>
+                                <i class="fab fa-steam"></i>
+                                <i class="fas fa-gamepad"></i>
+                                <i class="fas fa-desktop"></i>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
-            </div>
+            </section>
         </section>
-    </section>
-    <div th:replace="~{layout/layout :: footer}"></div>
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll('.image-container');
+        <div th:replace="~{layout/layout :: footer}"></div>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll('.image-container');
 
-        images.forEach(image => {
-            image.addEventListener('mouseenter', () => {
-                const button = image.querySelector('.view-more-button');
-                button.style.bottom = '0px';
-                button.style.opacity = '1';
-            });
+            images.forEach(image => {
+                image.addEventListener('mouseenter', () => {
+                    const button = image.querySelector('.view-more-button');
+                    button.style.bottom = '0px';
+                    button.style.opacity = '1';
+                });
 
-            image.addEventListener('mouseleave', () => {
-                const button = image.querySelector('.view-more-button');
-                button.style.bottom = '-50px';
-                button.style.opacity = '0';
+                image.addEventListener('mouseleave', () => {
+                    const button = image.querySelector('.view-more-button');
+                    button.style.bottom = '-50px';
+                    button.style.opacity = '0';
+                });
             });
         });
-    });
-</script>
+    </script>
 
 </html>

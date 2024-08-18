@@ -43,26 +43,32 @@ public class HomeController {
 
     private void allforProduct(Model model) {
         List<Product> lstProduct = productRepo.findAll();
-        // setGameplayNames
         lstProduct.forEach(product -> {
-            String gameplayNames = product.getGameplay().stream()
-                    .map(Gameplay::getName)
-                    .collect(Collectors.joining(", "));
-            product.setGameplayNames(gameplayNames);
-        });
-        // setPlatformNames
-        lstProduct.forEach(product -> {
-            String platformNames = product.getPlatform().stream()
-                    .map(Platform::getName)
-                    .collect(Collectors.joining(", "));
-            product.setPlatformNames(platformNames);
-        });
-        // setVersionNames
-        lstProduct.forEach(product -> {
-            String versionNames = product.getVersion().stream()
-                    .map(Version::getName)
-                    .collect(Collectors.joining("+ "));
-            product.setVersionNames(versionNames);
+            System.out.println("Product ID: " + product.getId()); // Debug output
+
+            if (product.getGameplay() != null) {
+                String gameplayNames = product.getGameplay().stream()
+                        .map(Gameplay::getName)
+                        .collect(Collectors.joining(", "));
+                product.setGameplayNames(gameplayNames);
+                System.out.println("Gameplay Names: " + gameplayNames); // Debug output
+            }
+
+            if (product.getPlatform() != null) {
+                String platformNames = product.getPlatform().stream()
+                        .map(Platform::getName)
+                        .collect(Collectors.joining(", "));
+                product.setPlatformNames(platformNames);
+                System.out.println("Platform Names: " + platformNames); // Debug output
+            }
+
+            if (product.getVersion() != null) {
+                String versionNames = product.getVersion().stream()
+                        .map(Version::getName)
+                        .collect(Collectors.joining("+ "));
+                product.setVersionNames(versionNames);
+                System.out.println("Version Names: " + versionNames); // Debug output
+            }
         });
         model.addAttribute("lstProduct", lstProduct);
     }
