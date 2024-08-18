@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -82,6 +83,14 @@ public class HomeController {
         return "shop";
     }
 
+    @GetMapping("/product/{id}")
+    public String product(@PathVariable int id, Model model) {
+        System.out.println("PRODUCT PAGE");
+        model.addAttribute("page", "shop");
+        allforProduct(model);
+        return "product";
+    }
+
     @GetMapping("/community")
     public String community(Model model) {
         model.addAttribute("page", "community");
@@ -96,6 +105,7 @@ public class HomeController {
 
     @GetMapping("/account")
     public String account(Model model) {
+        System.out.println("ACCOUNT PAGE");
         model.addAttribute("page", "account");
         return "account";
     }

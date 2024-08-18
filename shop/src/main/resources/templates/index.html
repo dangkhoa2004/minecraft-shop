@@ -21,8 +21,12 @@
             <h2 id="discover-games">DISCOVER OUR GAMES</h2>
             <div class="games">
                 <div class="game" th:each="product : ${lstProduct}">
-                    <div th:if="${#lists.size(product.imageUrl) > 0}">
+                    <div th:if="${#lists.size(product.imageUrl) > 0}" class="image-container">
                         <img th:src="@{${product.imageUrl[0].url}}" alt="mouse-image">
+                        <button class="view-more-button" onclick="viewMore()">
+                            <a th:href="@{/product/{id}(id=${product.id})}"
+                                style="text-decoration: none; color: white;">VIEW MORE</a>
+                        </button>
                     </div>
                     <div class="game-content">
                         <div class="game-title">
@@ -47,5 +51,24 @@
     </section>
     <div th:replace="~{layout/layout :: footer}"></div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll('.image-container');
+
+        images.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                const button = image.querySelector('.view-more-button');
+                button.style.bottom = '0px';
+                button.style.opacity = '1';
+            });
+
+            image.addEventListener('mouseleave', () => {
+                const button = image.querySelector('.view-more-button');
+                button.style.bottom = '-50px';
+                button.style.opacity = '0';
+            });
+        });
+    });
+</script>
 
 </html>
